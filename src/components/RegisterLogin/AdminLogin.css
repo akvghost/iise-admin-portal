@@ -1,0 +1,60 @@
+/* AdminLogin.css */
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  height: 100vh;
+  background-color: var(--secondlightest);
+  padding-left: 150px;
+  /* margin-left: -250px; */
+}
+
+.login-form {
+  width: 50vw;
+  /* height: 60vh; */
+  color: var(--secondlightest);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: var(--palleteblue);
+}
+
+.login-form-group {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 15px;
+  }
+
+.login-form-group label {
+
+  width: 10rem;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.login-form-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#login-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: var(--secondlightest);
+  color: var(--palleteblue);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#login-btn:active {
+  background-color: var(--lightest);
+}

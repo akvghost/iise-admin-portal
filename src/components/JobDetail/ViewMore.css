@@ -1,0 +1,96 @@
+.viewmore-container {
+  /* display: flex; */
+  gap: 2vw;
+  margin: 10px auto;
+  border: 2px solid rgb(15, 12, 12);
+  padding: 2vw;
+  color: var(--palleteblue);
+  background-image: linear-gradient(217deg, #103c57a8, 10%, white);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.verified{
+  background-color: green;
+  color:white;
+}
+
+.non-verified {
+  background-color: transparent;
+  color: var(--palleteblue);
+  font-weight: 600;
+  cursor: pointer;
+}
+.non-verified:hover{
+  background-color: green;
+  color: white;
+}
+.non-verified:active{
+  background-color: transparent;
+  color: var(--palleteblue);
+}
+#job-subheader {
+  display: flex;
+  gap: 4vw;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.alumni-details {
+  margin-top: 1vw;
+  padding: 1vw;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+#job-position {
+  color: #F4511E;
+}
+
+
+.alumni-details>#alumni-details-name {
+  color: #F4511E;
+  font-size: 3vw;
+  font-weight: 700;
+}
+
+.alumni-details #whatsapp-img {
+  height: 4vw;
+  width: 4vw;
+}
+
+.alumni-details .display-flex>span {
+
+  font-size: 3vw;
+  font-weight: 500;
+}
+
+.alumni-details>:nth-last-child(2){
+  font-weight: 600;
+}
+.alumni-details>button{
+  background-color: var(--palleteblue);
+  color: #F4511E;
+}
+.alumni-details>button:active {
+  background-color: transparent;
+  color: #F4511E;
+  /* transition: 0.1s; */
+}
+#alumni-details-svg {
+  height: 20px;
+}
+
+#job-type{
+  text-transform: uppercase;
+}

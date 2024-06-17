@@ -1,0 +1,23 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  background-color: var(--secondlightest);
+  
+  padding: 1rem;
+}
+.header-container>span{
+    padding-left: 150px;
+  color: #D95D39;
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+/* #12263A Prussian blue #D95D39 Cinnabar #FOEBD8 Eggshell #007EA7 Cerulean  */
+
+/* @media (max-width:480px){
+  .header-container{
+    width:120%
+  }
+} */

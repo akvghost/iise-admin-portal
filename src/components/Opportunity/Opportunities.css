@@ -1,0 +1,37 @@
+.opportunity-container {
+  width: 100%;
+  background-color: var(--secondlightest);
+  color: #007EA7;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+}
+.jobs-table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 1rem;
+  border: 2px solid #8f4b4b;
+  border-radius: 5px;
+  color: #103c57;
+}
+
+.jobs-table th,
+td {
+  /* padding: 8px; */
+  text-align: left;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: antiquewhite;
+}
+
+.jobs-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+@media (max-width:480px) {
+  .jobs-table {
+    /* width: 50% */
+  }
+}

@@ -1,0 +1,165 @@
+#profile-pic {
+  border-radius: 50%;
+  height: 24vw;
+  width: 25vw;
+
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* gap: 4vw; */
+
+}
+
+.alumniprofile-card {
+  display: flex;
+  flex-direction: column;
+  gap: .5vw;
+  border-radius: 2px;
+  background-color: var(--secondlightest);
+  /* box-shadow: 0px 0px 10px black; */
+  /* background-image: linear-gradient(37deg, var(--secondlightest), 74%, #12425f9c); */
+
+  padding: 2vw 5vw;
+}
+
+.alumniprofile-card>span a {
+  text-decoration: none;
+  color: var(--palleteblue);
+}
+
+.alumniprofile-card-font {
+  font-size: 2.2vw;
+}
+
+
+.alumni-image {
+  height: 15vw;
+  width: 15;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#basic-detail {
+  gap: 0;
+  text-align: center;
+  font-size: 2vw;
+}
+
+.profilecard-header {
+  text-align: left;
+  border-bottom: 1px solid var(--palleteblue);
+  font-weight: 700;
+  font-size: 2.2vw;
+}
+
+#address {
+  font-size: 2vw;
+}
+
+.icon {
+  height: 1.5vw;
+
+  border-radius: 50%;
+  stroke-width: 2px;
+}
+
+.header-icon {
+  height: 3.5vw;
+  width: 5.5vw;
+}
+
+#profile-heading1 {
+  font-weight: 600;
+}
+
+#profile-heading2 {
+  font-weight: 400;
+  /* font-size: 1vw; */
+  margin-left: 20px;
+}
+
+#profile-heading3 {
+  font-weight: 400;
+  font-size: 1.7vw;
+  margin-left: 20px;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vw;
+
+}
+
+
+
+.action-btn {
+  font-size: 1.8vw;
+  background: transparent;
+  border: 2px solid green;
+  cursor: pointer;
+  color: rgb(13, 97, 13);
+}
+.action-btn:active {
+  background-color: green;
+  color: white;
+}
+
+#delBtn {
+  font-size: 1.8vw;
+  background: transparent;
+  border-width: 2px;
+  cursor: pointer;
+  color: #a60e0e;
+}
+#delBtn:active {
+  background-color: #a60e0e;
+  color: white;
+}
+
+@media (max-width:600px) {
+  .alumniprofile-card-font {
+    font-size: 2.2vw;
+  }
+
+  #basic-detail {
+    font-size: 3.5vw;
+  }
+
+  .profilecard-header {
+    font-size: 5.2vw;
+  }
+
+  .icon {
+    height: 3vw;
+  }
+
+  .header-icon {
+    height: 4.5vw;
+  }
+
+  #profile-heading1 {
+    font-weight: 600;
+    font-size: 3vw;
+  }
+
+  #profile-heading2 {
+    font-weight: 600;
+    font-size: 2.7vw;
+    margin-left: 20px;
+  }
+
+  #profile-heading3 {
+    font-weight: 400;
+    font-size: 2.3vw;
+
+  }
+
+
+  .profile-actions>button {
+    font-size: 3vw;
+  }
+}
