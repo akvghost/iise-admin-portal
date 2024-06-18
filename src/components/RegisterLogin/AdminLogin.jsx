@@ -1,32 +1,53 @@
 import React, { useState } from "react";
 import "./AdminLogin.css";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function AdminLogin({ onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loginDetails, setLoginDetails] = useState({
+    userId: "",
+    password: "",
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle the login logic here
-    if (email && password) {
-      console.log("Login details", { email, password });
+    console.log(loginDetails);
 
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/api/v1/admin/login",
-          {
-            userId: email,
-            password: password,
-          }
-        );
-        console.log(response);
-      } catch (error) {
-        console.log("error");
+    const toastId = toast.loading("Let's Get You In", {
+      position: "bottom-right",
+      duration: 4000,
+    });
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/admin/login",
+        loginDetails
+      );
+      console.log(response);
+      if (response.data.status.success) {
+        toast.success(`Welcome ${response.data.data} 👋`, {
+          id: toastId,
+          position: "bottom-right",
+          duration: 4000,
+        });
+        setTimeout(() => {
+          onLoginSuccess();
+        }, 1500);
+      } else {
+        toast.error(`${response.data.data}`, {
+          id: toastId,
+          position: "bottom-right",
+          duration: 4000,
+        });
       }
-      onLoginSuccess();
-      // Call the callback function passed from App.js
+    } catch (error) {
+      console.log("error");
     }
+    // onLoginSuccess();
+    // Call the callback function passed from App.js
   };
 
   return (
@@ -38,8 +59,10 @@ function AdminLogin({ onLoginSuccess }) {
           <input
             type='email'
             id='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={loginDetails.userId}
+            onChange={(e) =>
+              setLoginDetails({ ...loginDetails, userId: e.target.value })
+            }
             placeholder='Enter your email ID'
             required
           />
@@ -49,8 +72,10 @@ function AdminLogin({ onLoginSuccess }) {
           <input
             type='password'
             id='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={loginDetails.password}
+            onChange={(e) =>
+              setLoginDetails({ ...loginDetails, password: e.target.value })
+            }
             placeholder='Enter your password'
             required
           />
@@ -59,6 +84,7 @@ function AdminLogin({ onLoginSuccess }) {
           Login
         </button>
       </form>
+      <Toaster />
     </div>
   );
 }

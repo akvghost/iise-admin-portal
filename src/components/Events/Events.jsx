@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Events.css";
 import PostEvents from "./PostEvents";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 function Events() {
   const eventDetails = [
     {
@@ -28,12 +30,46 @@ function Events() {
       description: "Description 3",
     },
   ];
+  const [events, setEvents] = useState([]);
 
   const [postEvent, setPostEvent] = useState(false);
 
   const handlePostEventBtn = () => {
     setPostEvent(true);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const toastId = toast.loading("Loading", { position: "bottom-right" });
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/alumni/events"
+        );
+        // Do something with the response jjj
+        console.log(response);
+        if (response.data.status.success) {
+          toast.success(`${response.data.status.message}`, {
+            id: toastId,
+            position: "bottom-right",
+            duration: 4000,
+          });
+          setEvents(response.data.data);
+          console.log(events);
+        } else {
+          toast.error("Unable to fetch Events", {
+            id: toastId,
+            position: "bottom-right",
+            duration: 4000,
+          });
+        }
+      } catch (error) {
+        // Handle error
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (postEvent) {
     return <PostEvents />;
@@ -62,16 +98,16 @@ function Events() {
           </tr>
         </thead>
         <tbody>
-          {eventDetails.map((event, index) => (
+          {events.map((event, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{event.eventId}</td>
-              <td>{event.title}</td>
-              <td>{event.venue}</td>
+              <td>{event.event_id}</td>
+              <td>{event.event_name}</td>
+              <td>{event.location}</td>
               <td>
-                {event.eventDate} {event.timing}
+                {event.event_date} {event.timing}
               </td>
-              <td>{event.description}</td>
+              <td>{event.short_description}</td>
               <td>
                 <button>Edit Event</button>
                 <button
@@ -88,6 +124,7 @@ function Events() {
           ))}
         </tbody>
       </table>
+      <Toaster />
     </div>
   );
 }
