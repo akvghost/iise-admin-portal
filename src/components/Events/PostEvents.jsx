@@ -1,12 +1,16 @@
+import axios from "axios";
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
 
 function PostEvents() {
+
   const [eventDetails, setEventDetails] = useState({
-    eventDate: "",
-    name: "",
-    venue: "",
+    event_name: "",
+    location: "",
+    event_date: "",
     timing: "",
-    description: "",
+    short_description: "",
   });
 
   const handleChange = (e) => {
@@ -14,11 +18,30 @@ function PostEvents() {
     console.log(eventDetails);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(eventDetails);
+    const toastId=toast.loading("Loading",{position:"bottom-right"});
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/api/v1/alumni/post-events",
+          eventDetails
+        );
+        console.log(response.data);
+        if(response.data.status.success)
+          {
+              toast.success("Event Posted Successfully",{id:toastId, position:"bottom-right",duration:4000});
+          }
+          else{
+            toast.error("Unable to Post Event",{id:toastId, position:"bottom-right",duration:4000});
+          }
+      } catch (error) {
+        console.log(error);
+      }
+      // } else console.log("in islse");...
+    };
+
     // Here you would typically send the eventDetails to your server or some API endpoint
-  };
 
   return (
     <div className='margin-left-250'>
@@ -29,17 +52,17 @@ function PostEvents() {
           <input
             type='date'
             id='eventDate'
-            name='eventDate'
+            name='event_date'
             onChange={handleChange}
           />
         </div>
         <div className='form-group'>
           <label htmlFor='name'>Name</label>
-          <input type='text' id='name' name='name' onChange={handleChange} />
+          <input type='text' id='name' name='event_name' onChange={handleChange} />
         </div>
         <div className='form-group'>
           <label htmlFor='venue'>Venue</label>
-          <input type='text' id='venue' name='venue' onChange={handleChange} />
+          <input type='text' id='venue' name='location' onChange={handleChange} />
         </div>
         <div className='form-group'>
           <label htmlFor='timing'>Timing</label>
@@ -47,6 +70,7 @@ function PostEvents() {
             type='time'
             id='timing'
             name='timing'
+            step={1}
             onChange={handleChange}
           />
         </div>
@@ -54,7 +78,7 @@ function PostEvents() {
           <label htmlFor='description'>Description</label>
           <textarea
             id='description'
-            name='description'
+            name='short_description'
             onChange={handleChange}
           />
         </div>
@@ -62,6 +86,7 @@ function PostEvents() {
           Submit
         </button>
       </form>
+      <Toaster />
     </div>
   );
 }
